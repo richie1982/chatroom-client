@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import io from 'socket.io-client'
-
-
+import { sendChat } from './services/server'
 
 const style = {
   display: "flex",
@@ -10,21 +8,15 @@ const style = {
   flexDirection: 'column',
 }
 
-let socket
+const App = () => {
 
-const sendChat = (msg) => {
-  socket.emit('chat-message', msg)
-}
+  let user = "richie"
 
-function App() {
-
-  if (!socket) {
-    socket = io(':3001')
-  }
   const [ textValue, setTextValue ] = useState("")
 
-  const handleSubmit = (msg) => {
-    sendChat(msg)
+  const handleSubmit = (user, msg) => {
+    sendChat(user, msg)
+    setTextValue("")
   }
 
   return (
@@ -37,7 +29,11 @@ function App() {
         ></input>
         <button
           type="submit"
-          onClick={() => handleSubmit(textValue)}
+          onClick={(e) => {
+            e.preventDefault()
+            handleSubmit(user, textValue)
+            }
+          }
         >Send</button>
       </form>
     </div>

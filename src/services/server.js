@@ -1,6 +1,19 @@
-const io = require('socket.io')
-const socket = io("http://localhost:3001/")
+import io from 'socket.io-client'
 
-socket.on("chat-message", (data) => {
-    console.log(data)
-})
+let socket
+
+if (!socket) {
+    socket = io(':3001')
+    socket.on('chat-message', msg => {
+        console.log({msg})
+    })
+}
+
+export const sendChat = (user, msg) => {
+    const obj = {
+        user: user,
+        msg: msg
+    }
+    socket.emit('chat-message', obj)
+  }
+  
