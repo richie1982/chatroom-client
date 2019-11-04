@@ -1,24 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import io from 'socket.io-client'
+
+
+
+const style = {
+  display: "flex",
+  justifyContent: 'center',
+  alignItems: "center",
+  flexDirection: 'column',
+}
+
+let socket
+
+const sendChat = (msg) => {
+  socket.emit('chat-message', msg)
+}
 
 function App() {
+
+  if (!socket) {
+    socket = io(':3001')
+  }
+  const [ textValue, setTextValue ] = useState("")
+
+  const handleSubmit = (msg) => {
+    sendChat(msg)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={style}>
+      <h3>Chatroom</h3>
+      <form>
+        <input type="text"
+        onChange={(e) => setTextValue(e.target.value)}
+        value={textValue}
+        ></input>
+        <button
+          type="submit"
+          onClick={() => handleSubmit(textValue)}
+        >Send</button>
+      </form>
     </div>
   );
 }
