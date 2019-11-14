@@ -1,0 +1,31 @@
+h1 {
+  padding-left: 20px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: grey;
+}
+  
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  width: 20%;
+  min-width: 150px;
+}
+
+.button {
+  margin: 5px;
+  margin-bottom: 10px;
+}
