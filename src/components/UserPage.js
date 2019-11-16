@@ -1,16 +1,18 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 // import { fetchUser } from '../services/api'
 import { CTX } from '../Store'
 import '../css/UserPage.css'
 
-const UserPage = () => {
+const UserPage = (props) => {
 
-    const [ state ] = useContext(CTX)
+    const [ state, action ] = useContext(CTX)
+
+    const handleSignOut = () => {
+      action({type: "REMOVE_USER"})
+      localStorage.removeItem('token')
+      props.history.push('/')
+    }
     
-    useEffect(() => {
-        console.log(state)
-    }, [state])
-
     return(
         <div className="container">
             <div>
@@ -18,6 +20,12 @@ const UserPage = () => {
                     {state && state.name}
                 </h1>
             </div>
+            <button
+            className="button"
+            onClick={handleSignOut}
+            >
+            Sign Out
+            </button>
             <div>
 
             </div>
@@ -26,6 +34,14 @@ const UserPage = () => {
 } 
 
 export default UserPage
+
+// const [ textValue, setTextValue ] = useState("")
+
+// const handleSubmit = (user, msg) => {
+//   sendChat(user, msg)
+//   setTextValue("")
+// }
+
 
 {/* <div style={style}>
         <h3>Chatroom</h3>

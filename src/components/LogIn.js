@@ -6,7 +6,7 @@ import '../css/SignUp.css'
 
 const LogIn = (props) => {
 
-    const [ , dispatch ] = useContext(CTX)
+    const [ , action ] = useContext(CTX)
 
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
@@ -15,9 +15,11 @@ const LogIn = (props) => {
         logIn(email, password)
             .then(data => {
                 if (data.error) return alert(data.error)
-                console.log(data)
-                dispatch({type: "ADD_USER", payload: data})
+                action({type: "ADD_USER", payload: data})
                 props.history.push(`/${data._id}`)
+                localStorage.setItem('token', data.token)
+                setEmail("")
+                setPassword("")
             })
     }
 

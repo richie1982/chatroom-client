@@ -2,12 +2,6 @@ import React, { createContext, useReducer } from 'react'
 
 export const CTX = createContext()
 
-// const initialState = {
-//     name: "Rich",
-//     email: "rich@dow.com",
-//     _id: "12345678"
-// }
-
 const userReducer = (state, action) => {
     switch (action.type) {
         case "ADD_USER":

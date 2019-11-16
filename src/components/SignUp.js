@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { signUp } from '../services/api'
+import { CTX } from '../Store'
 import '../css/SignUp.css'
 
 const SignUp = (props) => {
+
+    const [ , action ] = useContext(CTX)
 
     const [ name, setName ] = useState("")
     const [ email, setEmail ] = useState("")
@@ -11,9 +14,16 @@ const SignUp = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         signUp(name, email, password)
-        setName("")
-        setEmail("")
-        setPassword("")
+            .then(data => {
+                if (data.error) return alert(data.error)
+                localStorage.setItem('token', data.token)
+                action({ type: "ADD_USER", payload: data })
+                props.history.push(`/${data._id}`)
+                setName("")
+                setEmail("")
+                setPassword("")
+            })
+        
     }
 
 

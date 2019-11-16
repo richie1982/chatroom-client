@@ -27,6 +27,12 @@ export const logIn = (email, password) => {
     }).then(resp => resp.json())
 }
 
+export const validateUser = (token) => {
+    return fetch(baseUrl + '/validate', {
+        headers: { auth: token }
+    }).then(resp => resp.json())
+}
+
 export const fetchMessages = () => {
     return fetch(baseUrl + '/:id/messages')
         .then(resp => resp.json())
