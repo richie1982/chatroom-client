@@ -4,7 +4,7 @@ const HomePage = () => {
 
     return(
         <div>
-            <h1>
+            <h1 style={{color: "white"}}>
                 Chatroom
             </h1>
         </div>

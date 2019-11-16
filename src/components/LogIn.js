@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { logIn } from '../services/api'
+import { CTX } from '../Store'
 import '../css/SignUp.css'
 
-const LogIn = () => {
+
+const LogIn = (props) => {
+
+    const [ , dispatch ] = useContext(CTX)
 
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
 
+    const handleLogin = () => {
+        logIn(email, password)
+            .then(data => {
+                if (data.error) return alert(data.error)
+                console.log(data)
+                dispatch({type: "ADD_USER", payload: data})
+                props.history.push(`/${data._id}`)
+            })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        logIn(email, password)
-    }
+        handleLogin()
+    }   
 
 
     return(

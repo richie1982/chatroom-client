@@ -12,7 +12,6 @@ export const signUp = (name, email, password) => {
             password
         })
     }).then(resp => resp.json())
-    .then(data => console.log(data))
 }
 
 export const logIn = (email, password) => {
@@ -26,7 +25,6 @@ export const logIn = (email, password) => {
             password
         })
     }).then(resp => resp.json())
-    .then(data => console.log(data))
 }
 
 export const fetchMessages = () => {
