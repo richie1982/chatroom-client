@@ -24,7 +24,10 @@ const App = (props) => {
     if (!!localStorage.token) {
         validateUser()
         .then(data => {
-          if (data.error) return alert(data.error)
+          if (data.error) {
+            alert(data.error)
+            props.history.push('/')
+            }
           action({type: "ADD_USER", payload: data})
           props.history.push(`/${data._id}`)
           handleFriendFetch()

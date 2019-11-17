@@ -64,8 +64,8 @@ export const fetchFriends = (id) => {
     }).then(resp => resp.json())
 }
 
-export const addFriend = (userId, friendId) => {
-    return fetch(baseUrl + `/${userId}/friend`, {
+export const addFriend = (friendId) => {
+    return fetch(baseUrl + `/friend`, {
         method: "PATCH",
         headers: { 
             auth: localStorage.token,

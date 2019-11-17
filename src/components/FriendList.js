@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import '../css/FriendList.css'
 import { CTX } from '../Store'
 import { findFriend } from '../services/api'
+import Contact from './Contact'
+import Friend from './Friend'
 
 const FriendList = () => {
 
@@ -15,18 +17,18 @@ const FriendList = () => {
             .then(data => {
                 if (data.error) return data.error
                 setResults(data)
-                console.log(data)
             })
     }
 
     const timer = () => setTimeout(() => {
                 handleSearchFetch()
                 setLoading(false)
-            }, 1000)
+            }, 500)
 
-    const handleSearch = (value) => {
+    const handleSearch = (e) => {
+        e.preventDefault()
         setLoading(true)
-        setSearchTerm(value)
+        setSearchTerm(e.target.value)
     }
 
     useEffect(() => {
@@ -35,31 +37,39 @@ const FriendList = () => {
             return () => {clearTimeout(timer)}
     }, [searchTerm])
 
+    useEffect(() =>{
+        results && searchTerm.length < 1 &&
+            setResults(null)
+    }, [results, searchTerm])
+
     return(
         <div className="friend-list-container">
         <div>
-            <form>
-                <input
-                    type="text"
-                    label="searchTerm"
-                    value={searchTerm}
-                    onChange={e => handleSearch(e.target.value)}
-                    placeholder="Search for Contacts"
-                />
-            </form>
+            <div className="search-container">
+                <form>
+                    <input
+                        className="search-input"
+                        type="text"
+                        label="searchTerm"
+                        value={searchTerm}
+                        onChange={e => handleSearch(e)}
+                        placeholder="Search for Contacts"
+                    />
+                </form>
+            </div>
         </div>
         { loading && searchTerm.length > 0
         ? <div>Loading...</div>
         : results && searchTerm.length > 0
             ?<div>
                 {results.length > 0 
-                ?results.map((result, ind) => <li key={ind}>{result.name}</li>)
+                ?results.map((result, ind) => <Contact key={ind} user={result} setResults={setResults}/>)
                 :<h3>No contacts found...</h3>
                 }
             </div>
             :<div>
                 {state
-                ? state.friends.map((friend, ind) => <li key={ind}>{friend.name}</li>)
+                ? state.friends.map((friend, ind) => <Friend key={ind} user={friend}/>)
                 : <h3>No friends</h3>
                 }
             </div>

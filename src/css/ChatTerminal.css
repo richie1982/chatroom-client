@@ -1,7 +1,10 @@
 .chat-container {
-    width: 55%;
-    height: 1000px;
+    width: 70%;
+    height: 800px;
     display: flex;
     flex-direction: column;
-    background-color: green;
+    background-color: rgb(80, 78, 78);
+    box-shadow: 5px 10px 10px rgb(37, 36, 36) inset;
+    color: white;
+    
 }

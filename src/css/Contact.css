@@ -1,0 +1,32 @@
+.contact-container {
+    display: flex;
+    width: 90%;
+    min-width: 200px;
+    height: 75px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.friend-container {
+    display: flex;
+    width: 90%;
+    min-width: 200px;
+    height: 75px;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* margin: 5%; */
+    padding: 15px;
+    border-bottom: 1px solid rgb(141, 135, 135);
+}
+
+.contact-button {
+    border: none;
+    height: 20px;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.avatar-img {
+    border-radius: 20px;
+}
