@@ -48,8 +48,16 @@ const FriendList = () => {
                 />
             </form>
         </div>
-        {
-            <div>
+        { loading && searchTerm.length > 0
+        ? <div>Loading...</div>
+        : results && searchTerm.length > 0
+            ?<div>
+                {results.length > 0 
+                ?results.map((result, ind) => <li key={ind}>{result.name}</li>)
+                :<h3>No contacts found...</h3>
+                }
+            </div>
+            :<div>
                 {state
                 ? state.friends.map((friend, ind) => <li key={ind}>{friend.name}</li>)
                 : <h3>No friends</h3>
