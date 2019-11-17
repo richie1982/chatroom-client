@@ -19,11 +19,10 @@ const SignUp = (props) => {
                 localStorage.setItem('token', data.token)
                 action({ type: "ADD_USER", payload: data })
                 props.history.push(`/${data._id}`)
-                setName("")
-                setEmail("")
-                setPassword("")
             })
-        
+        setName("")
+        setEmail("")
+        setPassword("")
     }
 
 

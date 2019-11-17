@@ -18,9 +18,10 @@ const LogIn = (props) => {
                 action({type: "ADD_USER", payload: data})
                 props.history.push(`/${data._id}`)
                 localStorage.setItem('token', data.token)
-                setEmail("")
-                setPassword("")
+                props.handleFriendFetch()
             })
+        setEmail("")
+        setPassword("")
     }
 
     const handleSubmit = (e) => {

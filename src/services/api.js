@@ -27,9 +27,9 @@ export const logIn = (email, password) => {
     }).then(resp => resp.json())
 }
 
-export const validateUser = (token) => {
+export const validateUser = () => {
     return fetch(baseUrl + '/validate', {
-        headers: { auth: token }
+        headers: { auth: localStorage.token }
     }).then(resp => resp.json())
 }
 
@@ -42,11 +42,40 @@ export const postMessage = (text, recipId) => {
     return fetch(baseUrl + '/:id/message', {
         method: "POST",
         headers: {
+            auth: localStorage.token,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             text,
             recipId,
+        })
+    }).then(resp => resp.json())
+}
+
+export const fetchFriends = (id) => {
+    return fetch(baseUrl + '/friends', {
+        headers: { auth: localStorage.token }
+    }).then(resp => resp.json())
+}
+export const addFriend = (userId, friendId) => {
+    return fetch(baseUrl + `/${userId}/friend`, {
+        method: "PATCH",
+        headers: { 
+            auth: localStorage.token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            friendId: friendId
+        })
+    }).then(resp => resp.json())
+}
+
+export const removeFriend = (userId, friendId) => {
+    return fetch(baseUrl + `/${userId}/friend`, {
+        method: "DELETE",
+        headers: { auth: localStorage.token },
+        body: JSON.stringify({
+            friendId: friendId
         })
     }).then(resp => resp.json())
 }
