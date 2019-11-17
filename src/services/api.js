@@ -1,5 +1,7 @@
 const baseUrl = "http://localhost:3001"
 
+// SIGNUP, LOGIN, VALIDATION
+
 export const signUp = (name, email, password) => {
     return fetch(baseUrl + '/signup', {
         method: "POST",
@@ -33,6 +35,8 @@ export const validateUser = () => {
     }).then(resp => resp.json())
 }
 
+// MESSAGES
+
 export const fetchMessages = () => {
     return fetch(baseUrl + '/:id/messages')
         .then(resp => resp.json())
@@ -52,11 +56,14 @@ export const postMessage = (text, recipId) => {
     }).then(resp => resp.json())
 }
 
+// FRIENDS
+
 export const fetchFriends = (id) => {
     return fetch(baseUrl + '/friends', {
         headers: { auth: localStorage.token }
     }).then(resp => resp.json())
 }
+
 export const addFriend = (userId, friendId) => {
     return fetch(baseUrl + `/${userId}/friend`, {
         method: "PATCH",
@@ -78,5 +85,12 @@ export const removeFriend = (userId, friendId) => {
             friendId: friendId
         })
     }).then(resp => resp.json())
+}
+
+// FRIEND SEARCH
+
+export const findFriend = (query) => {
+    return fetch(baseUrl + `/search/${query}`)
+        .then(resp => resp.json())
 }
 
