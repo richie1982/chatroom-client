@@ -19,7 +19,7 @@ const Contact = (props) => {
 
     return(
         <div className="contact-container">
-            <img src="https://picsum.photos/65" alt="contact avatar" className="avatar-img"/>
+            <img src="https://picsum.photos/70" alt="contact avatar" className="avatar-img"/>
             <h4>{user.name}</h4>
             <button 
             type="submit"

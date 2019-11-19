@@ -19,6 +19,7 @@ const LogIn = (props) => {
                 props.history.push(`/${data._id}`)
                 localStorage.setItem('token', data.token)
                 props.handleFriendFetch()
+                props.handleFetchMessages(data._id)
             })
         setEmail("")
         setPassword("")

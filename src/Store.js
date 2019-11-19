@@ -20,6 +20,10 @@ const userReducer = (state, action) => {
             return {...state, friends:
                 state.friends.filter(friend => friend._id !== action.payload_id)
             }
+        case "IMPORT_MESSAGES":
+            return {...state, messages :
+                [...action.payload]
+            }
         default:
             throw new Error("reducer error")
     }

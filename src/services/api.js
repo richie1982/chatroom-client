@@ -37,13 +37,13 @@ export const validateUser = () => {
 
 // MESSAGES
 
-export const fetchMessages = () => {
-    return fetch(baseUrl + '/:id/messages')
+export const fetchMessages = (userId) => {
+    return fetch(baseUrl + `/${userId}/messages`)
         .then(resp => resp.json())
 }
 
-export const postMessage = (text, recipId) => {
-    return fetch(baseUrl + '/:id/message', {
+export const postMessage = (text, userId, recipId) => {
+    return fetch(baseUrl + `user/${userId}/message`, {
         method: "POST",
         headers: {
             auth: localStorage.token,
