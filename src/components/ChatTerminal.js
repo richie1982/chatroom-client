@@ -16,14 +16,13 @@ const ChatTerminal = () => {
 
     return(
         <div className="chat-container">
-            <h3>ChatTerminal</h3>
             <ConvoContainer/>
             <div className="chat-input-container">
                 <input
                 className="chat-input"
                     type="text"
                     onChange={e => setMessage(e.target.value)}
-                    onSubmit={null}
+                    onSubmit={handleSubmit}
                     value={message}
                     placeholder="Enter Msg..."
                 />

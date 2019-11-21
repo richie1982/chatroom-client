@@ -8,6 +8,10 @@
     margin: 5%;
 }
 
+.contact-container:hover {
+    opacity: 0.7;
+}
+
 .friend-container {
     display: flex;
     width: 90%;
@@ -16,9 +20,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    /* margin: 5%; */
     padding: 15px;
-    border-bottom: 1px solid rgb(141, 135, 135);
+    border-bottom: 1px solid #f6c89f;
+    border-top: 1px solid #f6c89f;
+    color: black;
+}
+
+.friend-container:hover {
+    opacity: 0.5;
+    cursor: grab;
 }
 
 .contact-button {
@@ -26,6 +36,10 @@
     height: 20px;
     border-radius: 5px;
     align-self: center;
+}
+
+.contact-button:hover {
+    cursor: grab;
 }
 
 .avatar-img {

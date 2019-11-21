@@ -5,22 +5,29 @@
 }
 
 .button {
-    width: 75px;
-    height: 30px;
+    width: 80px;
+    height: 40px;
     border-radius: 5px;
     border: none;
+    background: #2d3131;
+    color: white;
+    font-size: 1.0em;
+}
+
+.button:hover {
+    cursor: grab;
+    opacity: 0.5;
 }
 
 .header {
     width: 100%;
     height: 100px;
-    background-image: linear-gradient(to bottom left, rgb(56, 55, 55), rgb(44, 44, 44));
-    /* box-shadow: 5px 10px 8px rgb(66, 71, 112) inset; */
-    color: white;
+    background: #396362;
+    /* background-image: linear-gradient(to bottom left, rgb(56, 55, 55), rgb(44, 44, 44)); */
+    color: black;
     display: flex;
     flex-direction: row;
-    justify-items: flex-start;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
-    /* border: 1px solid rgb(141, 135, 135); */
+    /* border-radius: 5px; */
 }

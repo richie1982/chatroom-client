@@ -11,7 +11,7 @@ const ConvoContainer = () => {
     const filterChat = () => {
         if (!!state && !!state.selected) {
             const arr = state.messages.filter(msg => !!msg.users.find(user => user === state.selected[0]._id))
-            setMessages(arr.map(msg => msg.messages).flat().sort((a,b) => a.date - b.date))
+            setMessages(arr.map(msg => msg.messages).flat().reverse())
         }
     }
 

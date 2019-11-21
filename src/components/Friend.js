@@ -1,20 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import '../css/Contact.css'
 import { CTX } from '../Store'
 
 
 const Friend = (props) => {
 
-    const [ , action ] = useContext(CTX)
+    const [ state, action ] = useContext(CTX)
+    const [ selected, setSelected ] = useState(false)
+
+    const style = {
+        opacity: "0.5",
+    }
 
     const { user } = props
     const handleClick = () => {
         action({ type: "SELECT_RECIPIENT", payload: user })
     }
 
+    useEffect(() => {
+        !!state && !!state.selected && user._id === state.selected[0]._id
+            && setSelected(true)
+            console.log("hi")
+        return () => {
+            setSelected(false)
+        }
+    }, [state])
+
     return(
-        <div 
+        <div
         className="friend-container"
+        style={!!selected ?style :null}
         onClick={handleClick}
         >
             <img src="https://picsum.photos/70" alt="contact avatar" className="avatar-img"/>
