@@ -24,6 +24,14 @@ const userReducer = (state, action) => {
             return {...state, messages :
                 [...action.payload]
             }
+        case "ADD_MESSAGE":
+            return { ...state, messages: 
+                [...state.messages, action.payload]
+            }
+        case "SELECT_RECIPIENT": 
+            return {...state, selected: 
+                [action.payload]
+            }
         default:
             throw new Error("reducer error")
     }

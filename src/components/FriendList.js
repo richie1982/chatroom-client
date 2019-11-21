@@ -46,7 +46,7 @@ const FriendList = () => {
         <div className="friend-list-container">
         <div>
             <div className="search-container">
-                <form>
+                <form onSubmit={e => e.preventDefault()}>
                     <input
                         className="search-input"
                         type="text"
@@ -61,13 +61,13 @@ const FriendList = () => {
         { loading && searchTerm.length > 0
         ? <div>Loading...</div>
         : results && searchTerm.length > 0
-            ?<div>
+            ?<div style={{overflow: "scroll"}}>
                 {results.length > 0 
                 ?results.map((result, ind) => <Contact key={ind} user={result} setResults={setResults}/>)
                 :<h3>No contacts found...</h3>
                 }
             </div>
-            :<div>
+            :<div style={{overflow: "scroll"}}>
                 {state
                 ? state.friends.map((friend, ind) => <Friend key={ind} user={friend}/>)
                 : <h3>No friends</h3>

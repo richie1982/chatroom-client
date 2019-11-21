@@ -43,7 +43,7 @@ export const fetchMessages = (userId) => {
 }
 
 export const postMessage = (text, userId, recipId) => {
-    return fetch(baseUrl + `user/${userId}/message`, {
+    return fetch(baseUrl + `/${userId}/message`, {
         method: "POST",
         headers: {
             auth: localStorage.token,

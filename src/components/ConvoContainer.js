@@ -1,25 +1,27 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { CTX } from '../Store'
 import ChatBubble from './ChatBubble'
-import { fetchMessages } from '../services/api'
-
-let _isMounted = false
 
 const ConvoContainer = () => {
 
-    const [ state, action ] = useContext(CTX)
+    const [ state ] = useContext(CTX)
 
-    // useEffect(() => {
-    //     _isMounted = true
-    //     handleFetchMessages()
-    //     return () => {
-    //         _isMounted = false
-    //     };
-    // }, [])
+    const [ messages, setMessages ] = useState()
+
+    const filterChat = () => {
+        if (!!state && !!state.selected) {
+            const arr = state.messages.filter(msg => !!msg.users.find(user => user === state.selected[0]._id))
+            setMessages(arr.map(msg => msg.messages).flat().sort((a,b) => a.date - b.date))
+        }
+    }
+
+    useEffect(() => {
+        filterChat()
+    }, [state])
 
     return(
         <div className="convo-container">
-            {!!state && state.messages.length > 0 && state.messages.map((msg, ind) => <ChatBubble key={ind} msg={msg}/>) }
+            {!!messages && messages.map((msg, ind) => <ChatBubble key={ind} msg={msg}/>) }
         </div>
     )
 }

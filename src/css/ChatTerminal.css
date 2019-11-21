@@ -12,6 +12,10 @@
 
 .convo-container {
     display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
     width: 80%;
     min-width: 100px;
     min-height: 200px;
@@ -19,6 +23,7 @@
     border-radius: 5px;
     box-shadow: 5px 10px 10px rgb(37, 36, 36);
     border: 1px solid rgb(141, 135, 135);
+    overflow: scroll;
 }
 
 .chat-input-container {
@@ -44,4 +49,17 @@
     color: white;
     box-shadow: 1px 2px 3px rgb(83, 83, 83) inset;
     padding-left: 5px;
+}
+
+.chat-bubble {
+    min-width: 100px;
+    min-height: 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 5px;
+    color: black;
+    padding: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 0.8em;
 }
