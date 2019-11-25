@@ -13,14 +13,16 @@ const Friend = (props) => {
     }
 
     const { user } = props
+
     const handleClick = () => {
         action({ type: "SELECT_RECIPIENT", payload: user })
+        const chat = state.messages.find(msg => msg.users.find(id => id === user._id))
+        !!chat ? action({ type: "SELECT_CONV", payload: chat._id}) : action({ type: "CLEAR_CONV" })
     }
 
     useEffect(() => {
         !!state && !!state.selected && user._id === state.selected[0]._id
             && setSelected(true)
-            console.log("hi")
         return () => {
             setSelected(false)
         }

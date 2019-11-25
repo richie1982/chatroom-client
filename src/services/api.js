@@ -56,6 +56,18 @@ export const postMessage = (text, userId, recipId) => {
     }).then(resp => resp.json())
 }
 
+export const addMessage = (userId, msgId, text) => {
+    return fetch(baseUrl + `/${userId}/messages`, {
+        method: "PATCH",
+        headers : { "Content-Type": 'application/json'},
+        body: JSON.stringify({
+            msgId,
+            author: userId,
+            text
+            })
+    }).then(resp => resp.json())
+}
+
 // FRIENDS
 
 export const fetchFriends = (id) => {

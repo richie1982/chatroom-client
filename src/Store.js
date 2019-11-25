@@ -28,10 +28,18 @@ const userReducer = (state, action) => {
             return { ...state, messages: 
                 [...state.messages, action.payload]
             }
+        case "ADD_CHAT":
+            return {...state, messages:
+                [...state.messages, ]
+            }
         case "SELECT_RECIPIENT": 
             return {...state, selected: 
                 [action.payload]
             }
+        case "SELECT_CONV":
+            return {...state, msgId: action.payload}
+        case "CLEAR_CONV":
+            return {...state, msgId: ""}
         default:
             throw new Error("reducer error")
     }
