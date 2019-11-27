@@ -40,6 +40,10 @@ const userReducer = (state, action) => {
             return {...state, msgId: action.payload}
         case "CLEAR_CONV":
             return {...state, msgId: ""}
+        case "REMOVE_INVITE":
+            return {...state, invites:
+                state.invites.filter(el => el._id !== action.payload._id)
+            }
         default:
             throw new Error("reducer error")
     }

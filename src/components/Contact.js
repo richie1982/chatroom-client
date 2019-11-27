@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { addFriend } from '../services/api'
+import { addFriend, sendInvite } from '../services/api'
 import { CTX } from '../Store'
 import '../css/Contact.css'
 
@@ -9,10 +9,9 @@ const Contact = (props) => {
     const [ , action ] = useContext(CTX)
 
     const handleInvite = () => {
-        addFriend(user._id)
+        sendInvite(user._id)
             .then(data => {
                 if (data.error) return alert(data.error)
-                action({type: "ADD_FRIEND", payload: data})
                 setResults(null)
             })
     }

@@ -34,8 +34,11 @@ const ChatTerminal = () => {
       }
 
     socket.on('chat-message', msg => {
-        setAllMessages([msg,...allMessages])
-        console.log(msg)
+        if (!!state) {
+            if (msg.msgId === state.msgId) {
+                setAllMessages([msg,...allMessages])
+            }
+        }
     })
 
     // const postToDB = () => {

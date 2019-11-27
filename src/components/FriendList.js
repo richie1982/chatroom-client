@@ -68,7 +68,7 @@ const FriendList = () => {
                 }
             </div>
             :<div style={{overflow: "scroll"}}>
-                {state
+                {!!state && !!state.friends
                 ? state.friends.map((friend, ind) => <Friend key={ind} user={friend}/>)
                 : <h3>No friends</h3>
                 }

@@ -70,11 +70,25 @@ export const addMessage = (userId, msgId, text) => {
 
 // FRIENDS
 
-export const fetchFriends = (id) => {
+export const fetchFriends = () => {
     return fetch(baseUrl + '/friends', {
         headers: { auth: localStorage.token }
     }).then(resp => resp.json())
 }
+
+export const sendInvite = (friendId) => {
+    return fetch(baseUrl + '/invite', {
+        method: "PATCH",
+        headers: { 
+            "Content-Type": "application/json",
+            auth: localStorage.token
+        },
+        body: JSON.stringify({
+            friendId
+        })
+    }).then(resp => resp.json())
+}
+
 
 export const addFriend = (friendId) => {
     return fetch(baseUrl + `/friend`, {
@@ -84,7 +98,7 @@ export const addFriend = (friendId) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            friendId: friendId
+            friendId
         })
     }).then(resp => resp.json())
 }
@@ -94,7 +108,7 @@ export const removeFriend = (userId, friendId) => {
         method: "DELETE",
         headers: { auth: localStorage.token },
         body: JSON.stringify({
-            friendId: friendId
+            friendId
         })
     }).then(resp => resp.json())
 }
