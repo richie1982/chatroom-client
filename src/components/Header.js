@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { addFriend } from '../services/api'
+import { addFriend, declineInvite } from '../services/api'
 import { CTX } from '../Store'
 import '../css/UserPage.css'
 
@@ -49,7 +49,7 @@ const Header = (props) => {
             setModalOpen(!openModal)
     }
 
-    const contactInvite = (user, ind) => {
+    const ContactInvite = (user, ind) => {
 
         const style = {
             display: "flex",
@@ -57,13 +57,23 @@ const Header = (props) => {
             alignItems: "center",
         }
 
-        const handleClick = (e) => {
+        const handleAccept = (e) => {
             e.preventDefault()
             addFriend(user._id)
                 .then(data => {
                     if (data.error) return alert(data.error)
-                    action({type: "ADD_FRIEND", payload: data})
+                    action({type: "ADD_FRIEND", payload: data.friend})
+                    action({type: "REMOVE_INVITE", payload: data.friend})
+                })
+        }
+
+        const handleDecline = (e) => {
+            e.preventDefault()
+            declineInvite(user._id)
+                .then(data => {
+                    if (data.error) return alert(data.error)
                     action({type: "REMOVE_INVITE", payload: data})
+                    console.log(data)
                 })
         }
 
@@ -71,9 +81,14 @@ const Header = (props) => {
             <div style={style} key={ind}>
                 <p>{user.name}</p>
                 <button
-                    onClick={e => handleClick(e)}
+                    onClick={e => handleAccept(e)}
                 >
                     Accept
+                </button>
+                <button
+                    onClick={e => handleDecline(e)}
+                >
+                    Decline
                 </button>
             </div>
         )
@@ -96,7 +111,7 @@ const Header = (props) => {
             <div>
                 {!!openModal && !!state
                     && state.invites.length > 0
-                        ? state.invites.map((el, ind) => contactInvite(el, ind))
+                        ? state.invites.map((el, ind) => ContactInvite(el, ind))
                         : null
                 }
             </div>

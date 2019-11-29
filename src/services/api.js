@@ -59,10 +59,12 @@ export const postMessage = (text, userId, recipId) => {
 export const addMessage = (userId, msgId, text) => {
     return fetch(baseUrl + `/${userId}/messages`, {
         method: "PATCH",
-        headers : { "Content-Type": 'application/json'},
+        headers : { 
+            "Content-Type": 'application/json',
+            auth: localStorage.token
+    },
         body: JSON.stringify({
             msgId,
-            author: userId,
             text
             })
     }).then(resp => resp.json())
@@ -89,6 +91,18 @@ export const sendInvite = (friendId) => {
     }).then(resp => resp.json())
 }
 
+export const declineInvite = (id) => {
+    return fetch(baseUrl + '/pending', {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            auth: localStorage.token
+        },
+        body: JSON.stringify({
+            friendId: id
+        })
+    }).then(resp => resp.json())
+}
 
 export const addFriend = (friendId) => {
     return fetch(baseUrl + `/friend`, {
