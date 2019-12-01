@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { fetchMessages } from '../services/api'
 import '../css/Contact.css'
 import { CTX } from '../Store'
 
@@ -16,12 +17,18 @@ const Friend = (props) => {
 
     const handleClick = () => {
         action({ type: "SELECT_RECIPIENT", payload: user })
-        const chat = state.messages.find(msg => msg.users.find(id => id === user._id))
-        !!chat ? action({ type: "SELECT_CONV", payload: chat._id}) : action({ type: "CLEAR_CONV" })
+        fetchMessages(state._id, user._id)
+            .then(data => {
+                if (data.error) return alert(data.error)
+                action({type: "SET_MSGID", payload: data[0]._id})
+                action({type: "IMPORT_MESSAGES", payload: data[0].messages.sort((a,b) => {
+                    return new Date(b.date) - new Date(a.date)
+                })})
+            })
     }
 
     useEffect(() => {
-        !!state && !!state.selected && user._id === state.selected[0]._id
+        !!state && !!state.selected && user._id === state.selected._id
             && setSelected(true)
         return () => {
             setSelected(false)

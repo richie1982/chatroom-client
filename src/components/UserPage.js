@@ -21,12 +21,13 @@ const UserPage = (props) => {
   }
 
   const signOutButton = () => {
-    return (<button
-            className="button"
-            onClick={handleSignOut}
-            >
-            Sign Out
-          </button>
+    return (
+      <button
+        className="button"
+        onClick={handleSignOut}
+        >
+        Sign Out
+    </button>
     )
   }
 

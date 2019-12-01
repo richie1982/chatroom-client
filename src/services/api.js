@@ -37,21 +37,15 @@ export const validateUser = () => {
 
 // MESSAGES
 
-export const fetchMessages = (userId) => {
-    return fetch(baseUrl + `/${userId}/messages`)
-        .then(resp => resp.json())
-}
-
-export const postMessage = (text, userId, recipId) => {
-    return fetch(baseUrl + `/${userId}/message`, {
+export const fetchMessages = (userId, friendId) => {
+    return fetch(baseUrl + `/${userId}/messages`, {
         method: "POST",
         headers: {
-            auth: localStorage.token,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            auth: localStorage.token
         },
         body: JSON.stringify({
-            text,
-            recipId,
+            friendId
         })
     }).then(resp => resp.json())
 }

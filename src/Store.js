@@ -21,22 +21,14 @@ const userReducer = (state, action) => {
                 state.friends.filter(friend => friend._id !== action.payload_id)
             }
         case "IMPORT_MESSAGES":
-            return {...state, messages :
-                [...action.payload]
-            }
+            return {...state, messages: action.payload }
         case "ADD_MESSAGE":
             return { ...state, messages: 
-                [...state.messages, action.payload]
-            }
-        case "ADD_CHAT":
-            return {...state, messages:
-                [...state.messages, ]
+                [ action.payload, ...state.messages ]
             }
         case "SELECT_RECIPIENT": 
-            return {...state, selected: 
-                [action.payload]
-            }
-        case "SELECT_CONV":
+            return {...state, selected: action.payload}
+        case "SET_MSGID":
             return {...state, msgId: action.payload}
         case "CLEAR_CONV":
             return {...state, msgId: ""}

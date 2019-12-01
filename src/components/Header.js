@@ -73,7 +73,6 @@ const Header = (props) => {
                 .then(data => {
                     if (data.error) return alert(data.error)
                     action({type: "REMOVE_INVITE", payload: data})
-                    console.log(data)
                 })
         }
 
