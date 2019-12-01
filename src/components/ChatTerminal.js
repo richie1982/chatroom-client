@@ -54,6 +54,8 @@ const ChatTerminal = () => {
             && setAllMessages(state.messages)
     }, [state])
 
+    
+
     return(
         <div className="chat-container">
             <div className="convo-container">

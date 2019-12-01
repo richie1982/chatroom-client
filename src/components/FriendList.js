@@ -16,7 +16,7 @@ const FriendList = () => {
         findFriend(searchTerm)
             .then(data => {
                 if (data.error) return data.error
-                setResults(data)
+                setResults(data.filter(el => el._id !== state._id))
             })
     }
 

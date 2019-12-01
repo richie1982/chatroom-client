@@ -31,11 +31,15 @@
     cursor: grab;
 }
 
+.contact-right-div {
+    align-self: center;
+}
+
 .contact-button {
     border: none;
     height: 20px;
     border-radius: 5px;
-    align-self: center;
+    
 }
 
 .contact-button:hover {

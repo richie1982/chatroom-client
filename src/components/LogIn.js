@@ -18,7 +18,6 @@ const LogIn = (props) => {
                 action({type: "ADD_USER", payload: data})
                 props.history.push(`/${data._id}`)
                 localStorage.setItem('token', data.token)
-                // props.handleFetchMessages(data._id)
             })
         setEmail("")
         setPassword("")
